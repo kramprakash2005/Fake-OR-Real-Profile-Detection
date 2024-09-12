@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Social Media Profile Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center my-4 title">Real OR Fake Profile Analyzer</h1>
+                <form action="/predict" method="post" class="p-4 shadow-sm rounded form-container">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control input-field" name="username" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" class="form-control input-field" name="fullname" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description of the profile:</label>
+                        <input type="text" class="form-control input-field" name="description" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="posts">Number of Posts:</label>
+                            <input type="number" class="form-control input-field" name="posts" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="followers">Number of Followers:</label>
+                            <input type="number" class="form-control input-field" name="followers" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="follows">Number of Follows:</label>
+                            <input type="number" class="form-control input-field" name="follows" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="private">Private Account:</label>
+                            <select class="form-control input-field" name="private" required>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="profile_pic">Profile Picture:</label>
+                            <select class="form-control input-field" name="profile_pic" required>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="external_url">Has External URL:</label>
+                            <select class="form-control input-field" name="external_url" required>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-custom">Predict</button>
+                </form>
+
+                {% if prediction_text %}
+                <h3 class="prediction-text">{{ prediction_text }}</h3>
+            {% endif %}
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
